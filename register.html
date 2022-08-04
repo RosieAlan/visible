@@ -95,7 +95,34 @@
         document.querySelector('#myToast .toast-body').innerHTML=msg
         myToast.show()
       }
-      tip('啊啊啊啊')
+      tip('保持核酸24分钟')
+
+      document.querySelector('#btn-register').addEventListener('click',async function() {
+        const data=serialize(document.querySelector('form'),{hash:true})
+
+        if(data.username===undefined||data.password===undefined){
+          tip('用户名/密码不能为空😈')
+          return
+        }
+        if(data.password.length>6){
+          tip('密码要大于等于6位😍')
+          return
+        }
+        try {
+          const res=await axios({
+            url:'http://ajax-api.itheima.net/register'
+            ,method:'post',
+            data
+          })
+          tip(res.data.message)
+          setTimeout(() => {
+            window.location.assign('./login.html')
+          },1000)
+        } catch (error) {
+          tip(error.response.data.message)
+        }
+
+      })
     </script>
   </body>
 </html>
