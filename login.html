@@ -89,14 +89,14 @@
       document.querySelector('#btn-login').addEventListener('click',async function(){
         const data=serialize(document.querySelector('form'),{hash:true})
         console.log(data);
-        if(data.username===undefined||data.password===undefined){
-          tip('用户名/密码不能为空😈')
-          return
-        }
-        if(data.password.length>6){
-          tip('密码要大于等于6位😍')
-          return
-        }
+       if(data.username==undefined||data.username.trim()==''){
+        tip('用户名不能为空')
+        return;
+       }
+       if(data.password===undefined||data.password.trim().length<6){
+        tip('密码不能小于6位数噢😕')
+        return
+       }
         try {
           const res=await axios({
             url:'http://ajax-api.itheima.net/login'
@@ -104,9 +104,7 @@
             data
           })
           tip(res.data.message)
-          setTimeout(() => {
-            window.location.assign('./login.html')
-          },1000)
+          window.location.assign('./index.html')
         } catch (error) {
           tip(error.response.data.message)
         }
