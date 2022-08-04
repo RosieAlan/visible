@@ -85,6 +85,32 @@
     <script src="./lib/form-serialize.js"></script>
     <script src="./lib/axios.js"></script>
     <script src="./js/common.js"></script>
-    <script></script>
+    <script>
+      document.querySelector('#btn-login').addEventListener('click',async function(){
+        const data=serialize(document.querySelector('form'),{hash:true})
+        console.log(data);
+        if(data.username===undefined||data.password===undefined){
+          tip('用户名/密码不能为空😈')
+          return
+        }
+        if(data.password.length>6){
+          tip('密码要大于等于6位😍')
+          return
+        }
+        try {
+          const res=await axios({
+            url:'http://ajax-api.itheima.net/login'
+            ,method:'post',
+            data
+          })
+          tip(res.data.message)
+          setTimeout(() => {
+            window.location.assign('./login.html')
+          },1000)
+        } catch (error) {
+          tip(error.response.data.message)
+        }
+      })
+    </script>
   </body>
 </html>

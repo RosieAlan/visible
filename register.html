@@ -90,12 +90,7 @@
     <script>
       
 
-      const myToast=new bootstrap.Toast(document.querySelector('#myToast'),{delay:2000,})
-      function tip(msg){
-        document.querySelector('#myToast .toast-body').innerHTML=msg
-        myToast.show()
-      }
-      tip('保持核酸24分钟')
+      
 
       document.querySelector('#btn-register').addEventListener('click',async function() {
         const data=serialize(document.querySelector('form'),{hash:true})
