@@ -103,6 +103,8 @@
             ,method:'post',
             data
           })
+          console.log(res);
+          localStorage.setItem('token',res.data.data.token)
           tip(res.data.message)
           window.location.assign('./index.html')
         } catch (error) {
