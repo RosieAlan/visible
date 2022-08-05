@@ -256,5 +256,17 @@
     <script src="./js/common.js"></script>
     <script src="./lib/china.js"></script>
     <script src="./js/index.js"></script>
+    <script>
+      window.onload=async function(){
+        const res=await axios({
+          url:'/dashboard',
+          method:'get',
+          Headers:{
+            Authorization:localStorage.getItem('token')
+          },
+        })
+        console.log(res);
+      }
+    </script>
   </body>
 </html>
