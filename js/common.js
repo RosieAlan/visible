@@ -12,5 +12,14 @@ const myToast=new bootstrap.Toast(document.querySelector('#myToast'),{delay:2000
       function tip(msg){
         document.querySelector('#myToast .toast-body').innerHTML=msg
         myToast.show()
-      }
-      tip('保持核酸24分钟')
+     }
+
+axios.defaults.baseURL = 'http://ajax-api.itheima.net'
+
+// 设置用户名
+const username = localStorage.getItem('username')
+// 判断 是否存在 span 存在 设置
+const nameSpan = document.querySelector('#navbar-main .font-weight-bold')
+if (nameSpan) {
+  nameSpan.innerHTML = username
+}
