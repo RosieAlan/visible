@@ -20,6 +20,14 @@ axios.defaults.baseURL = 'http://ajax-api.itheima.net'
 const username = localStorage.getItem('username')
 // 判断 是否存在 span 存在 设置
 const nameSpan = document.querySelector('#navbar-main .font-weight-bold')
-if (nameSpan) {
+/* if (nameSpan) {
   nameSpan.innerHTML = username
-}
+} */
+nameSpan&& (nameSpan.innerHTML = username)
+const logoutBtn = document.querySelector('#logout')
+
+logoutBtn&&(logoutBtn.onclick=function(){
+  localStorage.removeItem('username')
+  localStorage.removeItem('token')
+  window.location.assign('./login.html')
+})
